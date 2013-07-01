@@ -49,14 +49,14 @@
     
     NSString *nonce = @"Ucbxsg";
     NSString *timestamp = @"1372542";
-    NSString *method = @"GET";
+    NSString *method = @"POST";
     NSURL *url = [NSURL URLWithString:@"http://localhost:4443/api/user"];
     NSString *payload = @"some payload.";
     NSString *contentType = @"text/plain";
     
     NSString *header = [client generateAuthorizationHeaderWithPayloadValidation:url method:method timestamp:timestamp nonce:nonce credentials:credentials payload:payload ext:nil contentType:contentType];
     
-    STAssertEqualObjects(header, @"Hawk id=\"100005742427426\", ts=\"1372542\", nonce=\"Ucbxsg\", hash=\"G5k81X6y/DXRujfQBZKOWFqWyGvgu7TJp/vHUFxp1AI=\", ext=\"\", mac=\"oybUvgoMPIDGt38KVyu2t9/1hEtrMShHDdcKCwt/aKc=\"", @"Generated Authorization header");
+    STAssertEqualObjects(header, @"Hawk id=\"100005742427426\", ts=\"1372542\", nonce=\"Ucbxsg\", hash=\"G5k81X6y/DXRujfQBZKOWFqWyGvgu7TJp/vHUFxp1AI=\", ext=\"\", mac=\"Nt4HBIyHYo9HSbAHZQTsT90O+h+THSAiES5PXjGLm7M=\"", @"Generated Authorization header");
 }
 
 - (void)testException
