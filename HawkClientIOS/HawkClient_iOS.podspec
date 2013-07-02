@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HawkClient"
-  s.version      = "0.0.1"
+  s.version      = "1.0"
   s.summary      = "Implementation of Hawk protocol for clients in iOS."
   s.homepage     = "https://github.com/STracker/HawkClient_iOS"
   s.author       = { "ricardosousa1989" => "sousa.ricardo10@gmail.com" }
