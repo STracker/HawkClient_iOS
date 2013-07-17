@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		539C341266614297BA61085F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B7A7BDEC134985B03F36D3 /* libPods.a */; };
 		8C3C7671177F8AD9000C41D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3C7670177F8AD9000C41D7 /* Foundation.framework */; };
-		8C3C7676177F8AD9000C41D7 /* HawkClient_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3C7675177F8AD9000C41D7 /* HawkClient_iOS.h */; };
-		8C3C7678177F8AD9000C41D7 /* HawkClient_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C7677177F8AD9000C41D7 /* HawkClient_iOS.m */; };
+		8C3C7676177F8AD9000C41D7 /* HawkClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8C3C7675177F8AD9000C41D7 /* HawkClient.h */; };
+		8C3C7678177F8AD9000C41D7 /* HawkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3C7677177F8AD9000C41D7 /* HawkClient.m */; };
 		8C3C7680177F8ADA000C41D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3C767F177F8ADA000C41D7 /* SenTestingKit.framework */; };
 		8C3C7682177F8ADA000C41D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3C7681177F8ADA000C41D7 /* UIKit.framework */; };
 		8C3C7683177F8ADA000C41D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3C7670177F8AD9000C41D7 /* Foundation.framework */; };
@@ -37,7 +37,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				8C3C7676177F8AD9000C41D7 /* HawkClient_iOS.h in CopyFiles */,
+				8C3C7676177F8AD9000C41D7 /* HawkClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,8 +47,8 @@
 		8C3C766D177F8AD9000C41D7 /* libHawkClient_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHawkClient_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C7670177F8AD9000C41D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C3C7674177F8AD9000C41D7 /* HawkClient_iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HawkClient_iOS-Prefix.pch"; sourceTree = "<group>"; };
-		8C3C7675177F8AD9000C41D7 /* HawkClient_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HawkClient_iOS.h; sourceTree = "<group>"; };
-		8C3C7677177F8AD9000C41D7 /* HawkClient_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HawkClient_iOS.m; sourceTree = "<group>"; };
+		8C3C7675177F8AD9000C41D7 /* HawkClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HawkClient.h; sourceTree = "<group>"; };
+		8C3C7677177F8AD9000C41D7 /* HawkClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HawkClient.m; sourceTree = "<group>"; };
 		8C3C767E177F8ADA000C41D7 /* HawkClient_iOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawkClient_iOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3C767F177F8ADA000C41D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8C3C7681177F8ADA000C41D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -122,8 +122,8 @@
 			children = (
 				8C3C7698177F8AF1000C41D7 /* HawkCredentials.h */,
 				8C3C7699177F8AF1000C41D7 /* HawkCredentials.m */,
-				8C3C7675177F8AD9000C41D7 /* HawkClient_iOS.h */,
-				8C3C7677177F8AD9000C41D7 /* HawkClient_iOS.m */,
+				8C3C7675177F8AD9000C41D7 /* HawkClient.h */,
+				8C3C7677177F8AD9000C41D7 /* HawkClient.m */,
 				8C3C7673177F8AD9000C41D7 /* Supporting Files */,
 			);
 			path = HawkClient_iOS;
@@ -284,7 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3C7678177F8AD9000C41D7 /* HawkClient_iOS.m in Sources */,
+				8C3C7678177F8AD9000C41D7 /* HawkClient.m in Sources */,
 				8C3C769A177F8AF1000C41D7 /* HawkCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

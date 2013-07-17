@@ -7,11 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "HawkClient_iOS.h"
+#import "HawkClient.h"
 
 @interface HawkClient_iOSTests : SenTestCase
-{
-    HawkClient_iOS *client;
-}
 
 @end
