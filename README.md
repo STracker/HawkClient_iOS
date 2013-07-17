@@ -11,13 +11,17 @@ From [Cocoapods](http://cocoapods.org/?q=HawkClient).
 #### Usage
 With this client is possible to make a request with and without payload validation.  
 Example without payload validation:  
+<pre>
 <code>
 NSString *header = [HawkClient generateAuthorizationHeader:url method:method timestamp:timestamp nonce:nonce credentials:credentials ext:ext payload:ext payloadValidation:NO];
 </code>
+</pre>
   
 Example with payload validation:   
+<pre>
 <code> 
 NSString *header = [HawkClient generateAuthorizationHeader:url method:method timestamp:timestamp nonce:nonce credentials:credentials ext:ext payload:payload payloadValidation:YES];
 </code>  
+</pre>  
 
 See unit tests project if you still in doubt.
