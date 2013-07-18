@@ -25,3 +25,6 @@ NSString *header = [HawkClient generateAuthorizationHeader:url method:method tim
 </pre>  
 
 See unit tests project if you still in doubt.
+
+#### Dependencies
+- [Base64](https://github.com/ekscrypto/Base64)
