@@ -62,8 +62,8 @@
  @param credentials Hawk credentials object.
  @param ext Some extra string.
  @param payload Request body.
- @return The Authorization header with Hawk protocol.
  @param payloadValidation indicates if the header is created with payload validation.
+ @return The Authorization header with Hawk protocol.
  @discussion This function generates an HTTP Authorization header with Hawk protocol. Is possible to generate a header with payload validation.
  */
 + (NSString *)generateAuthorizationHeader:(NSURL *)url method:(NSString *)method timestamp:(NSString *)timestamp nonce:(NSString *)nonce credentials:(HawkCredentials *)credentials ext:(NSString *)ext payload:(NSString *)payload payloadValidation:(BOOL)payloadValidation
