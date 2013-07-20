@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 /*!
- @class HawkCredentials
- @discussion This class implements the object HawkCredentials, that includes the user identifier and the shared key between the server and the iOS client.
+ @discussion This class implements the object HawkCredentials,
+ that includes the user identifier and the shared key between the
+ server and the iOS client.
  @see https://github.com/hueniverse/hawk
  */
 @interface HawkCredentials : NSObject

@@ -10,62 +10,8 @@
 
 @implementation HawkClient
 
-/*!
- @function generateMAC
- @param normalized The normalized string.
- @param credentials The user Hawk credentials.
- @return The generated MAC in base64-encoded.
- @discussion This is a private auxiliary function for generate a MAC using SHA256 algorithm.
- */
-+ (NSString *)generateMAC:(NSString *)normalized credentials:(HawkCredentials *)credentials
-{
-    const char *cKey = [credentials.key cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *cNormalized = [normalized cStringUsingEncoding:NSUTF8StringEncoding];
-    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cNormalized, strlen(cNormalized), cHMAC);
-    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
-    
-    return [HMAC base64String];
-}
+#pragma mark - HawkClient public methods.
 
-/*!
- @function generateNormalizedString
- @param url Request url.
- @param method Type of HTTP method.
- @param timestamp Timestamp in seconds.
- @param nonce Random string.
- @param credentials Hawk credentials object.
- @param payload Request body.
- @param ext Some extra string.
- @return The normalized string according to Hawk protocol.
- @discussion This function generates a normalized string. In this function the port number is not used because of load balancing performed from some hosts.
- */
-+ (NSString *)generateNormalizedString:(NSURL *)url method:(NSString *)method timestamp:(NSString *)timestamp nonce:(NSString *)nonce credentials:(HawkCredentials *)credentials payload:(NSString *)payload ext:(NSString *)ext
-{
-    // Preparing the variables.
-    NSString *header = @"hawk.1.header";
-    method = [method uppercaseString];
-    NSString *query = (url.query == nil) ? @"" : url.query;
-    NSString *uri = [NSString stringWithFormat:@"%@%@", url.path, query];
-    NSString *host = url.host;
-    
-    // Creating the normalized string.
-    return [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n", header, timestamp, nonce, method, uri, host, payload, ext];
-}
-
-/*!
- @function generateAuthorizationHeader
- @param url Request url.
- @param method Type of HTTP method.
- @param timestamp Timestamp in seconds.
- @param nonce Random string.
- @param credentials Hawk credentials object.
- @param ext Some extra string.
- @param payload Request body.
- @param payloadValidation indicates if the header is created with payload validation.
- @return The Authorization header with Hawk protocol.
- @discussion This function generates an HTTP Authorization header with Hawk protocol. Is possible to generate a header with payload validation.
- */
 + (NSString *)generateAuthorizationHeader:(NSURL *)url method:(NSString *)method timestamp:(NSString *)timestamp nonce:(NSString *)nonce credentials:(HawkCredentials *)credentials ext:(NSString *)ext payload:(NSString *)payload payloadValidation:(BOOL)payloadValidation
 {
     if (url == nil || method == nil || timestamp == nil || nonce == nil || credentials == nil)
@@ -87,11 +33,6 @@
     [NSString stringWithFormat:@"Hawk id=\"%@\", ts=\"%@\", nonce=\"%@\", ext=\"%@\", mac=\"%@\"", credentials.identifier, timestamp, nonce, ext, MAC];
 }
 
-/*!
- @function getTimestamp
- @return The timestamp in seconds.
- @discussion This function returns a timestamp in seconds from UTC time.
- */
 + (NSString *)getTimestamp
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -104,17 +45,55 @@
     return [NSString stringWithFormat:@"%ld", timestamp];
 }
 
-/*!
- @function generateNonce
- @return The random nonce.
- @discussion This function generates and returns a random string (nonce).
- */
 + (NSString *)generateNonce
 {
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
     NSString *nonce = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     CFRelease(uuid);
     return nonce;
+}
+
+#pragma mark - HawkClient auxiliary private methods.
+
+/*!
+ @discussion This is a private auxiliary method for generate a MAC using SHA256 algorithm.
+ @param normalized The normalized string.
+ @param credentials The user Hawk credentials.
+ @return The generated MAC in base64-encoded.
+ */
++ (NSString *)generateMAC:(NSString *)normalized credentials:(HawkCredentials *)credentials
+{
+    const char *cKey = [credentials.key cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cNormalized = [normalized cStringUsingEncoding:NSUTF8StringEncoding];
+    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cNormalized, strlen(cNormalized), cHMAC);
+    NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
+    
+    return [HMAC base64String];
+}
+
+/*!
+ @discussion This method generates a normalized string. In this function the port number is not used because of load balancing performed from some hosts.
+ @param url Request url.
+ @param method Type of HTTP method.
+ @param timestamp Timestamp in seconds.
+ @param nonce Random string.
+ @param credentials Hawk credentials object.
+ @param payload Request body.
+ @param ext Some extra string.
+ @return The normalized string according to Hawk protocol.
+ */
++ (NSString *)generateNormalizedString:(NSURL *)url method:(NSString *)method timestamp:(NSString *)timestamp nonce:(NSString *)nonce credentials:(HawkCredentials *)credentials payload:(NSString *)payload ext:(NSString *)ext
+{
+    // Preparing the variables.
+    NSString *header = @"hawk.1.header";
+    method = [method uppercaseString];
+    NSString *query = (url.query == nil) ? @"" : url.query;
+    NSString *uri = [NSString stringWithFormat:@"%@%@", url.path, query];
+    NSString *host = url.host;
+    
+    // Creating the normalized string.
+    return [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@\n%@\n%@\n%@\n", header, timestamp, nonce, method, uri, host, payload, ext];
 }
 
 @end
